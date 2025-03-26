@@ -1,0 +1,26 @@
+{
+    "name": "Amazon Linux 2023",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "dbaeumer.vscode-eslint",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    },
+    "mounts": [
+        "source=/Users/${localEnv:USER}/.aws,target=/home/ec2-user/.aws,type=bind",
+        "source=/Users/${localEnv:USER}/.ssh,target=/home/ec2-user/.ssh,type=bind",
+        "source=project-commandhistory,target=/commandhistory,type=volume"
+    ],
+    "containerEnv": {
+        "WATCHPACK_POLLING": "true"
+    },
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspace,type=bind",
+    "workspaceFolder": "/workspace",
+    "remoteUser": "ec2-user"
+}
